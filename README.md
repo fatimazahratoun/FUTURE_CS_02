@@ -28,7 +28,6 @@ Security Alert Monitoring & Incident Response Simulation
 | [📄 csv_data/timeline_analysis.csv](csv_data/timeline_analysis.csv) | Chronological attack timeline | 13 events |
 | [📄 csv_data/user_charlie_connection_attempts.csv](csv_data/user_charlie_connection_attempts.csv) | Charlie-specific attacks | 5 attempts |
 | [📄 csv_data/all_users_connection_attempts.csv](csv_data/all_users_connection_attempts.csv) | All connection attempts | 21 attempts |
-| [📄 csv_data/iocs_detected.csv](csv_data/iocs_detected.csv) | Indicators of Compromise | 6 IPs + malware |
 
 ## 🎯 Key Investigation Findings
 
