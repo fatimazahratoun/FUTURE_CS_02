@@ -21,6 +21,8 @@ Security Alert Monitoring & Incident Response Simulation
 |------|-------------|
 | [📄 SECURITY_INCIDENT_REPORT.pdf](SECURITY_INCIDENT_REPORT.pdf) | Complete forensic investigation report (18 pages) |
 | [📄 SOC_Task2_Sample_Logs.txt](SOC_Task2_Sample_Logs.txt) | Original log data provided for analysis |
+| [📄 setup_commands.txt](setup_commands.txt) | ELK Stack deployment commands |
+
 ### **📂 CSV Data Analysis**
 | File | Analysis Type | Records |
 |------|--------------|---------|
