@@ -45,9 +45,7 @@ Security Alert Monitoring & Incident Response Simulation
 | Targeted Accounts | 2 (david, bob) |
 | Malicious IP Addresses | 6 |
 
-## 🔧 Technical Analysis
 
-### Attack Infrastructure
 ## 🔧 Analysis Methodology
 
 ### Tools Considered
