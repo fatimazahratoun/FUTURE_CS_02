@@ -48,3 +48,18 @@ Security Alert Monitoring & Incident Response Simulation
 ## 🔧 Technical Analysis
 
 ### Attack Infrastructure
+## 🔧 Analysis Methodology
+
+### Tools Considered
+For this type of SOC analysis, the following tools are typically used:
+- **ELK Stack** (Elasticsearch, Logstash, Kibana) - For log ingestion and visualization
+- **Splunk** - Enterprise SIEM solution
+- **Docker** - For containerized deployment
+
+### Analysis Approach
+1. Log parsing and timeline reconstruction
+2. Pattern recognition using CSV data analysis
+3. Correlation of events across multiple user accounts
+4. IOC extraction and documentation
+
+*Note: While ELK Stack is the industry standard for such analyses, this investigation was conducted using processed log data to focus on analytical methodology.*
