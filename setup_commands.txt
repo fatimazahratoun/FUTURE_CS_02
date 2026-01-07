@@ -1,0 +1,134 @@
+# ====================================================
+# ELK Stack Setup Commands for SOC Analysis
+# Cyber Security Task 2 - Future Interns
+# ====================================================
+# These commands document the environment setup process
+# for security log analysis and incident investigation.
+# ====================================================
+
+########################################
+# STEP 1: SYSTEM PREPARATION
+########################################
+
+# Update Ubuntu
+sudo apt update
+sudo apt upgrade -y
+
+# Install required packages
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+
+########################################
+# STEP 2: INSTALL DOCKER
+########################################
+
+# Add official Docker repository
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Install Docker Engine
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+
+# Verify installation
+sudo docker --version
+
+########################################
+# STEP 3: CONFIGURE DOCKER (without sudo)
+########################################
+
+# Add user to docker group
+sudo usermod -aG docker $USER
+
+# Restart session
+newgrp docker
+
+# Test without sudo
+docker run hello-world
+
+########################################
+# STEP 4: INSTALL DOCKER COMPOSE
+########################################
+
+# Download Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# Make executable
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Verify
+docker-compose --version
+
+########################################
+# STEP 5: DEPLOY ELK STACK
+########################################
+
+# Create docker-compose.yml file
+cat > docker-compose.yml << 'EOF'
+version: '3.8'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - elk-network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.13.0
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_HOSTS: 'http://elasticsearch:9200'
+    depends_on:
+      - elasticsearch
+    networks:
+      - elk-network
+
+volumes:
+  elasticsearch-data:
+    driver: local
+
+networks:
+  elk-network:
+    driver: bridge
+EOF
+
+# Start ELK Stack services
+docker-compose up -d
+
+# Verify services are running
+docker-compose ps
+
+########################################
+# STEP 6: ACCESS SERVICES
+########################################
+
+# Check Elasticsearch status
+curl -X GET "localhost:9200/"
+
+# Kibana will be available at:
+# http://localhost:5601
+
+# To stop services:
+# docker-compose down
+
+# To view logs:
+# docker-compose logs -f
+
+########################################
+# NOTES
+########################################
+# - ELK Stack version: 8.13.0
+# - Ports: Elasticsearch (9200), Kibana (5601)
+# - Security: Disabled for demo purposes
+# - Memory: 512MB allocated to Elasticsearch
+# ====================================================
