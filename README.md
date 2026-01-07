@@ -21,7 +21,6 @@ Security Alert Monitoring & Incident Response Simulation
 |------|-------------|
 | [📄 SECURITY_INCIDENT_REPORT.pdf](SECURITY_INCIDENT_REPORT.pdf) | Complete forensic investigation report (18 pages) |
 | [📄 SOC_Task2_Sample_Logs.csv](SOC_Task2_Sample_Logs.csv) | Original log data provided for analysis |
-
 ### **📂 CSV Data Analysis**
 | File | Analysis Type | Records |
 |------|--------------|---------|
